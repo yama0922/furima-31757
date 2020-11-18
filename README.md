@@ -3,22 +3,22 @@
 
 
 
+## Uses table
 
-Users
 | Column                | Type   | Options  |
 |---------------------  |------- | ---------|
-| nick name             | string | not null | 
-| email                 | string | not null |
-| password              | string | not null |
-| password_confirmation | string | not null |
+| nick_name             | string | not null | 
+| e_mail                | string | not null |
+| encrypted_password    | string | not null |
 | last_name             | string | not null |
 | first_name            | string | not null |
 | last_name_kana        | string | not null |
 | first_name_kana       | string | not null |
-| user_birth_date       | date   | not null |
+| birth_date            | date   | not null |
 
 
-
+### Association
+* has_many :items
 
 
 
@@ -26,47 +26,46 @@ Users
 
 
 Items
-| Column    | Type       | Options    |
-|---------  |-------     |  --------  |
-| item_image| string     | not null   |
-| category  | text       | not null   |
-| sell_price| text       | not null   |
-| user      | references |            | 
-| items_text| string     | not null   |
-| item_info | string     | not null   |
-  
+| Column                  | Type       | Options    |
+|-----------------------  |---------   | --------   |
+| item_image              | string     | not null   |
+| category                | text       | not null   |
+| item_price              | text       | not null   |
+| user                    | references |            | 
+| items_text              | string     | not null   |
+| item_info               | string     | not null   |
+| item_name               | string     | not null   |
+| item_detail             | string     | not null   |
+| items_explain           | string     | not null   |
+| item_sale_status        | string     | not null   |
+| item_shipping_fee_status| string     | not null   |
+| item_prefecture         | string     | not null   |
+| item-scheduled_delivery | string     | not null   |
+| add_tax_price           | string     | not null   |
+| profit                  | string     | not null   |
 
-
-
-
-
-Shipping_address_form
-| Column      | Type       | Options   |
-| -------     | --------   | --------  |
-| postal_code | string     |  not null |
-| prefecture  | string     |  not null |
-| city        | string     |  not null |
-| address     | string     |  not null |
-| building    | string     |  not null |
-| phone_number| string     |  not null |
-
-
-
-
-
+### Association
+- belongs_to :user
 
 
 
 Shipping_address_form
+| Column       | Type       | Options   |
+| -------      | --------   | --------  |
+| postal_code  | string     |  not null |
+| prefecture_id| integer    |  not null |
+| city         | string     |  not null |
+| address      | string     |  not null |
+| building     | string     |           |
+| phone_number | string     |  not null |
+
+
+
+
+
+
+
+
+Trades
 | Column                | Type       | Options   |
 | --------------------  | --------   | --------  |
-| buy_item_info         | string     |  not null |
-| buy-items_img         | string     |  not null |
-| buy_item_price        | string     |  not null |
-| credit_card_number    | string     |  not null |
-| credit_card_form      | string     |  not null |
-| form-text             | text       |  not null |
-| input_expiration_month| string     |  not null |
-| input_expiration_date | string     |  not null |
-| card_exp_date         | string     |  not null |
-| card_exp_year         | string     |  not null |
