@@ -1,71 +1,81 @@
-# README
+
 
 
 
 
 ## Uses table
 
-| Column                | Type   | Options  |
-|---------------------  |------- | ---------|
-| nick_name             | string | not null | 
-| e_mail                | string | not null |
-| encrypted_password    | string | not null |
-| last_name             | string | not null |
-| first_name            | string | not null |
-| last_name_kana        | string | not null |
-| first_name_kana       | string | not null |
-| birth_date            | date   | not null |
+| Column                | Type   | Options     |
+|---------------------  |------- | ---------   |
+| nickname              | string | null :false | 
+| nickname              | string | null :false | 
+| email                 | string | null :false |
+| encrypted_password    | string | null :false |
+| last_name             | string | null :false |
+| first_name            | string | null :false |
+| last_name_kana        | string | null :false |
+| first_name_kana       | string | null :false |
+| birth_date            | date   | null :false |
 
 
 ### Association
 * has_many :items
-
+* has_many :comments
 
 
 
 
 
 Items
-| Column                  | Type       | Options    |
-|-----------------------  |---------   | --------   |
-| item_image              | string     | not null   |
-| category                | text       | not null   |
-| item_price              | text       | not null   |
-| user                    | references |            | 
-| items_text              | string     | not null   |
-| item_info               | string     | not null   |
-| item_name               | string     | not null   |
-| item_detail             | string     | not null   |
-| items_explain           | string     | not null   |
-| item_sale_status        | string     | not null   |
-| item_shipping_fee_status| string     | not null   |
-| item_prefecture         | string     | not null   |
-| item-scheduled_delivery | string     | not null   |
-| add_tax_price           | string     | not null   |
-| profit                  | string     | not null   |
+| Column                  | Type       | Options       |
+|-----------------------  |---------   | --------      |             
+| category_id             | text       | null :false   |
+| price                   | integer    | null :false   |
+| user                    | references |               | 
+| text                    | text       | null :false   |
+| info                    | text       | null :false   |
+| name                    | text       | null :false   |
+| detail                  | text       | null :false   |
+| explain                 | text       | null :false   |
+| sale_status             | text       | null :false   |
+| shipping_fee_status     | text       | null :false   |
+| prefecture_id           | text       | null :false   |
+| scheduled_delivery      | text       | null :false   |
+| add_tax_price           | text       | null :false   |
+| profit                  | text       | null :false   |
 
 ### Association
 - belongs_to :user
-
+- has_many   :comments
 
 
 Shipping_address_form
-| Column       | Type       | Options   |
-| -------      | --------   | --------  |
-| postal_code  | string     |  not null |
-| prefecture_id| integer    |  not null |
-| city         | string     |  not null |
-| address      | string     |  not null |
-| building     | string     |           |
-| phone_number | string     |  not null |
+| Column       | Type       | Options      |
+| -------      | --------   | --------     |
+| postal_code  | string     |  null :false |
+| prefecture_id| integer    |  null :false |
+| city         | string     |  null :false |
+| address      | string     |  null :false |
+| building     | string     |              |
+| phone_number | string     |  null :false |
 
-
-
+### Association
+- belongs_to :user
+ 
 
 
 
 
 
 Trades
-| Column                | Type       | Options   |
-| --------------------  | --------   | --------  |
+| Column                | Type       | Options     |
+| --------------------  | --------   | --------    |
+| postal_code           | string     | null  :false|
+| prefecture_id         | integer    | null  :false|
+| city                  | string     | null  :false|
+| address               | string     | null  :false|
+| building              | string     |             |
+| phone_number          | string     | null  :false|
+
+### Association
+- belongs_to :user
