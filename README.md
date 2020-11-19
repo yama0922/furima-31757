@@ -33,13 +33,12 @@ Items
 | user                    | references | foreign_key: true| 
 | text                    | text       | null :false      |
 | name                    | string     | null :false      |
-| detail                  | text       | null :false      |
-| sale_status             | text       | null :false      |
-| shipping_fee_status     | text       | null :false      |
-| prefecture_id           | text       | null :false      |
-| scheduled_delivery      | text       | null :false      |
-| add_tax_price           | text       | null :false      |
-| profit                  | text       | null :false      |
+| detail                  | string     | null :false      |
+| sale_status             | string     | null :false      |
+| shipping_fee_status     | string     | null :false      |
+| prefecture_id           | integer    | null :false      |
+| scheduled_delivery      | string     | null :false      |
+
 
 ### Association
 - belongs_to :user
@@ -57,7 +56,7 @@ Address_form
 | phone_number | string     |  null :false |
 
 ### Association
-- belongs_to :user
+- belongs_to :buyer
  
 
 
@@ -67,7 +66,8 @@ Address_form
 Buyer
 | Column                | Type       | Options          |
 | --------------------  | --------   | ---------------  |
-| item_id               | string     | foreign_key: true|
-| user-id               | string     | foreign_key: true|
-### Association
+| item_id               | integer    | foreign_key: true|
+| user_id               | integer    | foreign_key: true|
+### Association 
 - belongs_to :user
+- has_one :address_form
