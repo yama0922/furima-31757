@@ -33,8 +33,8 @@ Items
 | user                    | references | foreign_key: true| 
 | text                    | text       | null :false      |
 | name                    | string     | null :false      |
-| sale_status             | integer    | null :false      |
-| shipping_fee_status     | integer    | null :false      |
+| sale_status_id          | integer    | null :false      |
+| shipping_fee_status_id  | integer    | null :false      |
 | prefecture_id           | integer    | null :false      |
 | scheduled_delivery_id   | integer    | null :false      |
 
