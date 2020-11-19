@@ -19,7 +19,7 @@
 
 ### Association
 * has_many :items
-* has_many :address_form
+* has_many :address_forms
 
 
 
@@ -51,8 +51,9 @@ Address_form
 | prefecture_id| integer    |  null :false                 |
 | city         | string     |  null :false                 |
 | address      | string     |  null :false                 |
-| building     | integer    |  foreign_key: true           |
+| building     | string     |                              |
 | phone_number | string     |  null :false                 |
+| buyer        | integer    | foreign_key: true            |
 
 ### Association
 - belongs_to :buyer
@@ -70,4 +71,4 @@ Buyer
 ### Association 
 - belongs_to :user
 - has_one :address_form
-- has_one :items
+- belongs_to :items
