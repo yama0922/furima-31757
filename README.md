@@ -19,7 +19,7 @@
 
 ### Association
 * has_many :items
-* has_many :comments
+* has_many :address_form
 
 
 
@@ -33,27 +33,26 @@ Items
 | user                    | references | foreign_key: true| 
 | text                    | text       | null :false      |
 | name                    | string     | null :false      |
-| detail                  | string     | null :false      |
-| sale_status             | string     | null :false      |
-| shipping_fee_status     | string     | null :false      |
+| sale_status             | integer    | null :false      |
+| shipping_fee_status     | integer    | null :false      |
 | prefecture_id           | integer    | null :false      |
-| scheduled_delivery      | string     | null :false      |
+| scheduled_delivery_id   | integer    | null :false      |
 
 
 ### Association
 - belongs_to :user
-- has_many   :comments
+- has_one :address_form
 
 
 Address_form
-| Column       | Type       | Options      |
-| -------      | --------   | --------     |
-| postal_code  | string     |  null :false |
-| prefecture_id| integer    |  null :false |
-| city         | string     |  null :false |
-| address      | string     |  null :false |
-| building     | string     |              |
-| phone_number | string     |  null :false |
+| Column       | Type       | Options                      |
+| -------      | --------   | -------------------          |
+| postal_code  | string     |  null :false                 | 
+| prefecture_id| integer    |  null :false                 |
+| city         | string     |  null :false                 |
+| address      | string     |  null :false                 |
+| building     | integer    |  foreign_key: true           |
+| phone_number | string     |  null :false                 |
 
 ### Association
 - belongs_to :buyer
@@ -71,3 +70,4 @@ Buyer
 ### Association 
 - belongs_to :user
 - has_one :address_form
+- has_one :items
