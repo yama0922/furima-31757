@@ -3,12 +3,11 @@
 
 
 
-## Uses table
+## Users table
 
 | Column                | Type   | Options     |
 |---------------------  |------- | ---------   |
-| nickname              | string | null :false | 
-| nickname              | string | null :false | 
+| nickname              | string | null :false |  
 | email                 | string | null :false |
 | encrypted_password    | string | null :false |
 | last_name             | string | null :false |
@@ -27,29 +26,27 @@
 
 
 Items
-| Column                  | Type       | Options       |
-|-----------------------  |---------   | --------      |             
-| category_id             | text       | null :false   |
-| price                   | integer    | null :false   |
-| user                    | references |               | 
-| text                    | text       | null :false   |
-| info                    | text       | null :false   |
-| name                    | text       | null :false   |
-| detail                  | text       | null :false   |
-| explain                 | text       | null :false   |
-| sale_status             | text       | null :false   |
-| shipping_fee_status     | text       | null :false   |
-| prefecture_id           | text       | null :false   |
-| scheduled_delivery      | text       | null :false   |
-| add_tax_price           | text       | null :false   |
-| profit                  | text       | null :false   |
+| Column                  | Type       | Options          |
+|-----------------------  |---------   | --------         |             
+| category_id             | integer    | null :false      |
+| price                   | integer    | null :false      |
+| user                    | references | foreign_key: true| 
+| text                    | text       | null :false      |
+| name                    | string     | null :false      |
+| detail                  | text       | null :false      |
+| sale_status             | text       | null :false      |
+| shipping_fee_status     | text       | null :false      |
+| prefecture_id           | text       | null :false      |
+| scheduled_delivery      | text       | null :false      |
+| add_tax_price           | text       | null :false      |
+| profit                  | text       | null :false      |
 
 ### Association
 - belongs_to :user
 - has_many   :comments
 
 
-Shipping_address_form
+Address_form
 | Column       | Type       | Options      |
 | -------      | --------   | --------     |
 | postal_code  | string     |  null :false |
@@ -67,10 +64,10 @@ Shipping_address_form
 
 
 
-Trades
-| Column                | Type       | Options     |
-| --------------------  | --------   | --------    |
-| item                  | string     |  null :false|
-| user                  | string     |  null :false|
+Buyer
+| Column                | Type       | Options          |
+| --------------------  | --------   | ---------------  |
+| item_id               | string     | foreign_key: true|
+| user-id               | string     | foreign_key: true|
 ### Association
 - belongs_to :user
