@@ -59,37 +59,32 @@ RSpec.describe User, type: :model do
   end
   
   it "last_nameが空では登録できないこと" do
-    @user.nic_name = nil
+    @user.last_name = nil
     @user.valid?
     expect(@user.errors.full_messages).to include("Last＿name can't be blank")
   end
 
   it "first_nameが空では登録できないこと" do
-    @user.nic_name = nil
+    @user.first_name = nil
     @user.valid?
     expect(@user.errors.full_messages).to include("First＿name can't be blank")
   end
 
   it "last_name_kanaが空では登録できないこと" do
-    @user.nic_name = nil
+    @user.last_name_kana = nil
     @user.valid?
     expect(@user.errors.full_messages).to include("Last＿name_kana can't be blank")
   end
 
   t "first_name_kanaが空では登録できないこと" do
-    @user.nic_name = nil
+    @user.first_name_kana = nil
     @user.valid?
     expect(@user.errors.full_messages).to include("First＿name_kana can't be blank")
   end
 
-  t "first_name_kanaが空では登録できないこと" do
-    @user.nic_name = nil
-    @user.valid?
-    expect(@user.errors.full_messages).to include("First＿name_kana can't be blank")
-  end
 
   t "birth_dateが空では登録できないこと" do
-    @user.nic_name = nil
+    @user.birth_date = nil
     @user.valid?
     expect(@user.errors.full_messages).to include("Birth_date can't be blank")
   end
