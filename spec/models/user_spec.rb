@@ -26,6 +26,12 @@ RSpec.describe User, type: :model do
     expect(@user).to be_valid
   end
   
+  it "emailに「＠」がない場合、登録できないこと" do
+    user = FactoryBot.build(:user, email: "test.gmail.com")
+    user.valid?
+    expect(user.errors[:email]).to include("は不正な値です")
+  end   
+
   it "passwordが空では登録できないこと" do
     @user.password = nil
     @user.valid?
