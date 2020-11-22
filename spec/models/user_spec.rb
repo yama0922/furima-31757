@@ -9,7 +9,7 @@ RSpec.describe User, type: :model do
   end
 
   it "nick_nameが空では登録できないこと" do
-    @user.nic_name = nil
+    @user.nickname = nil
     @user.valid?
     expect(@user.errors.full_messages).to include("Nick_name can't be blank")
   end
@@ -41,29 +41,44 @@ RSpec.describe User, type: :model do
     expect(@user.errors.full_messages).to include("Password can't be blank")
   end
   it "passwordが6文字以上であれば登録できること" do
-    @user.password = "123456"
-    @user.password_confirmation = "123456"
+    @user.password = "123aaa"
+    @user.password_confirmation = "123aaa"
     expect(@user).to be_valid
   end
 
   it "passwordが5文字以下であれば登録できないこと" do
-    @user.password = "12345"
-    @user.password_confirmation = "12345"
+    @user.password = "123aaa"
+    @user.password_confirmation = "123aa"
     @user.valid?
     expect(@user.errors.full_messages).to include("Password is too short (minimum is 6 characters)")
   end
   
   it "passwordとpassword_confirmationが不一致では登録できないこと" do
-    @user.password = "123456"
-    @user.password_confirmation = "1234567"
+    @user.password = "123aaa"
+    @user.password_confirmation = "123456a"
     @user.valid?
     expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
   end
 
-  it "パスワードが英字１文字、数字１文字以上入っていないと進めない" do
-    @uesr.password = "test.password.com"
+  it "パスワードが半角英字のみの場合登録できない" do
+    @uesr.password = "123aaa"
+    @user.password_confirmation = "aaaaaa"
     user.valid?
-    expect(user.password_complexity).to include("は英字と数字をそれぞれ1文字以上含める必要があります")
+    expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+  end
+  
+  it "パスワードが半角数字のみの場合登録できない" do
+    @uesr.password = "123aaa"
+    @user.password_confirmation = "123456"
+    user.valid?
+    expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+  end
+  
+  t "パスワードが全角英数字の場合登録できない" do
+    @uesr.password = "123aaa"
+    @user.password_confirmation = "BB3AAA"
+    user.valid?
+    expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
   end
   
   it "last_nameが空では登録できないこと" do
