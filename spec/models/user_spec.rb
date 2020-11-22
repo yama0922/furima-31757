@@ -4,7 +4,7 @@ RSpec.describe User, type: :model do
     @user = FactoryBot.build(:user)
   end
 
-  it "nameとemail、passwordとpassword_confirmationが存在すれば登録できること" do
+  it "入力内容に不備がなければ登録できること" do
     expect(@user).to be_valid
   end
 
@@ -20,11 +20,6 @@ RSpec.describe User, type: :model do
     expect(@user.errors.full_messages).to include("Email can't be blank")
   end
 
-  it "email@があれば登録できること" do
-    @user.email = "@"
-    @user.email_confirmation = "@"
-    expect(@user).to be_valid
-  end
   
   it "emailに「＠」がない場合、登録できないこと" do
     user = FactoryBot.build(:user, email: "test.gmail.com")
