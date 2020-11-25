@@ -146,5 +146,36 @@ RSpec.describe User, type: :model do
     end
   
     
+    it "category_idが空では登録できないこと" do
+      @user.category_id = nil
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Category_id can't be blank")
+    end
+  
+    t "sale_status_idが空では登録できないこと" do
+      @user.sale_status_id = nil
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Sale_status_id  can't be blank")
+    end
+  
+    t "shipping_fee_status_idが空では登録できないこと" do
+      @user.shipping_fee_status_id  = nil
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Shipping_fee_status_id  can't be blank")
+    end
+   
+    t "prefecture_idが空では登録できないこと" do
+      @user.prefecture_id = nil
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Prefecture_id  can't be blank")
+    end
+  
+    t "scheduled_delivery_idが空では登録できないこと" do
+      @user.scheduled_delivery_id  = nil
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Scheduled_delivery_id  can't be blank")
+    end
+    
+  
   end
 end
