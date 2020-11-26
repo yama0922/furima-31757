@@ -12,31 +12,31 @@ RSpec.describe Item, type: :model do
   end
   
   context '商品出品ができない時' do
-    it "category_idが空では登録できないこと" do
+    it "category_idが1では登録できないこと" do
       @item.category_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include("Category_id can't be blank")
     end
 
-    it "sale_status_idが空では登録できないこと" do
+    it "sale_status_idが1では登録できないこと" do
       @item.sale_status_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include("Sale_status_id  can't be blank")
     end
 
-    it "shipping_fee_status_idが空では登録できないこと" do
+    it "shipping_fee_status_idが1では登録できないこと" do
       @item.shipping_fee_status_id  = 1
       @item.valid?
       expect(@item.errors.full_messages).to include("Shipping_fee_status_id  can't be blank")
     end
 
-    it "prefecture_idが空では登録できないこと" do
+    it "prefecture_idが1では登録できないこと" do
       @item.prefecture_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include("Prefecture_id  can't be blank")
     end
 
-    it "scheduled_delivery_idが空では登録できないこと" do
+    it "scheduled_delivery_idが1では登録できないこと" do
       @item.scheduled_delivery_id  = 1
       @item.valid?
       expect(@item.errors.full_messages).to include("Scheduled_delivery_id  can't be blank")
@@ -73,18 +73,46 @@ RSpec.describe Item, type: :model do
     end
     
     it "imageが空では登録できないこと" do
-        @item.name = nil
+        @item.image = nil
         @item.valid?
         expect(@item.errors.full_messages).to include("Image can't be blank")
     end
      
     it "priceが空では登録できないこと" do
-      @item.name = nil
+      @item.price = nil
       @item.valid?
       expect(@item.errors.full_messages).to include("Price can't be blank")
     end
   
+    it "category_id空では登録できないこと" do
+      @item.category_id = nil
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Category_id can't be blank")
+    end
+   
+    it "sale_status_id空では登録できないこと" do
+      @item.sale_status_id = nil
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Sale_status_id can't be blank")
+    end
   
-  
+    it "shipping_fee_status_id空では登録できないこと" do
+      @item.shipping_fee_status_id = nil
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Shipping_fee_status_id can't be blank")
+    end
+   
+    it "prefecture_idが空では登録できないこと" do
+      @item.prefecture_id = nil
+      @item.valid?
+      expect(@item.errors.full_messages).to include("prefecture_id can't be blank")
+    end
+    
+    it "scheduled_delivery_idが空では登録できないこと" do
+    @item.scheduled_delivery_id = nil
+    @item.valid?
+    expect(@item.errors.full_messages).to include("Scheduled_delivery_id can't be blank")
+   end
+ 
   end
 end

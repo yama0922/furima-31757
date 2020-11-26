@@ -2,9 +2,7 @@ FactoryBot.define do
   factory :item do
   
     category_id             {"test"}
-    price                   {"test"}
-    price                   {"test"}
-    price                   {"test"}
+    price                   {"300"}                
     user                    {"test"}
     text                    {"test"}
     name                    {"test"}
