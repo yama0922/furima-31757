@@ -11,8 +11,13 @@ class Item < ApplicationRecord
   belongs_to :scheduled_delivery
 
   validates :text, :name, :price, presence: true
-  validates :category_id, :sale_status_id, :shipping_fee_status_id, :prefecture_id, :scheduled_delivery_id, numericality: { other_than: 1 } 
-
+  validates :category_id, :sale_status_id, :shipping_fee_status_id, :prefecture_id, :scheduled_delivery_id, numericality: { other_than: 1 }
+  validates :price, numericality: { greater_than_or_equal_to: 299, less_than_or_equal_to: 10000000, message: "is out of setting range"}
+  
+  validates :price, numericality: { with:/\A[a-zA-Z0-9]+\z/, message: "半角数字のみ入力可能である"}
+  
+  
+  
   #画像は1枚必須である(ActiveStorageを使用すること)
   # 商品名が必須である
   # 商品の説明が必須である

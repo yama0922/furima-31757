@@ -55,14 +55,18 @@ RSpec.describe Item, type: :model do
     end
   
     it "priceが299円以下であれば登録できないこと" do
-      @item.price = 300
       @item.price = 299
       @item.valid?
       expect(@item.errors.[:item]).to include("は不正な値です")
     end
   
+    it "priceが10,000,000円以上であれば登録できないことであれば登録できないこと" do
+      @item.price = 10,000,000
+      @item.valid?
+      expect(@item.errors.[:item]).to include("は不正な値です")
+    end
+    
     it "priceが全角数字の場合登録できない" do
-      @item.price = 111
       @item.price = １１１
       @item.valid?
       expect(@item.errors.[:item]).to include("は不正な値です")
