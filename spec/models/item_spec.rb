@@ -55,17 +55,32 @@ RSpec.describe Item, type: :model do
     end
   
     it "priceが299円以下であれば登録できないこと" do
-      @item.price = "300"
-      @item.price_confirmation = "299"
+      @item.price = 300
+      @item.price = 299
       @item.valid?
       expect(@item.errors.[:item]).to include("は不正な値です")
     end
   
-    t "priceが全角数字の場合登録できない" do
-      @item.price = "111"
-      @item.price_confirmation = "１１１"
+    it "priceが全角数字の場合登録できない" do
+      @item.price = 111
+      @item.price = １１１
       @item.valid?
       expect(@item.errors.[:item]).to include("は不正な値です")
     end
+    
+    it "imageが空では登録できないこと" do
+        @item.name = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Image can't be blank")
+    end
+     
+    it "priceが空では登録できないこと" do
+      @item.name = nil
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Price can't be blank")
+    end
+  
+  
+  
   end
 end
