@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new,:ceeate]
   def index
+    @items = Item.all
   end  
   
   
@@ -18,6 +19,10 @@ class ItemsController < ApplicationController
     end
   end
   
+  
+ 
+
+
 
   private
 
