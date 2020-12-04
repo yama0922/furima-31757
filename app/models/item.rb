@@ -11,17 +11,17 @@ class Item < ApplicationRecord
   belongs_to :scheduled_delivery
 
   with_options presence: true do
-   validates :text 
-   validates :name
-   validates :price
-   validates :image
-   validates :category
-   validates :prefecture
-   validates :sale_status
-   validates :shipping_fee_status
-   validates :scheduled_delivery
+    validates :text
+    validates :name
+    validates :price
+    validates :image
+    validates :category
+    validates :prefecture
+    validates :sale_status
+    validates :shipping_fee_status
+    validates :scheduled_delivery
   end
-  
+
   validates :category_id, :sale_status_id, :shipping_fee_status_id, :prefecture_id, :scheduled_delivery_id, numericality: { other_than: 1 }
   validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999, message: 'is out of setting range' }
 

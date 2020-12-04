@@ -2,6 +2,7 @@ class AddressFormsController < ApplicationController
   before_action :authenticate_user!, only: :index
   before_action :set_buyer, only: [:index, :create]
   def index
+    redirect_to root_path if current_user.id == @item.user.id || @item.buyer.present?
     @memoform = MemoForm.new
   end
 
