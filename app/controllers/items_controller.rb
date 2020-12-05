@@ -1,15 +1,14 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new,:create,:edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   def index
-    @items = Item.all.order("created_at DESC")
+    @items = Item.includes(:user).order('created_at DESC')
     # @items = Item
-  end  
-  
-  
+  end
+
   def new
     @item = Item.new
-  end 
+  end
 
   def create
     @item = Item.new(item_params)
@@ -20,36 +19,38 @@ class ItemsController < ApplicationController
       render :new
     end
   end
-  
+
   def show
   end
- 
+
   def edit
+    redirect_to root_path unless current_user.id == @item.user.id
   end
 
   def update
     if @item.update(item_params)
-       redirect_to root_path
+      redirect_to root_path
     else
-      render :edit   
+      render :edit
     end
   end
-  
+
   def destroy
-    if current_user.id == @item.user.id && @item.destroy
-       redirect_to root_path 
+    if current_user.id == @item.user.id
+      @item.destroy
+      redirect_to root_path
     else
       render :show
     end
-  end   
-  
+  end
+
   private
 
   def item_params
-    params.require(:item).permit(:image, :category_id, :price, :text, :name, :sale_status_id, :shipping_fee_status_id, :prefecture_id, :scheduled_delivery_id,  ).merge(user_id: current_user.id)
+    params.require(:item).permit(:image, :category_id, :price, :text, :name, :sale_status_id, :shipping_fee_status_id, :prefecture_id, :scheduled_delivery_id).merge(user_id: current_user.id)
   end
 
   def set_item
-   @item = Item.find(params[:id]) 
+    @item = Item.find(params[:id])
   end
 end
